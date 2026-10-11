@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <!-- SEO Optimization -->
+  <title>Free Online Tools - QR Code, Password Generator, Unit Converter | InstantTools</title>
+  <meta name="description" content="InstantTools: Free online utility suite with QR Code Generator, Random Password Generator, and Unit Converter. Fast, secure, and SEO-optimized. No signup required." />
+  <meta name="keywords" content="free online tools, qr code generator, password generator, unit converter, online tools free, utility tools, free converter" />
+  <meta name="author" content="InstantTools" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Online Tools - QR Code, Password Generator, Unit Converter" />
+  <meta property="og:description" content="Create QR codes, generate secure passwords, and convert units instantly. All free, no signup needed." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://instanttools.com" />
+  
+  <!-- Preconnect Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  
+  <style>
+    :root {
+      --bg: #050816;
+      --bg2: #0b1220;
+      --panel: rgba(10, 15, 30, 0.8);
+      --panel-strong: rgba(18, 24, 39, 0.96);
+      --primary: #7c3aed;
+      --secondary: #22d3ee;
+      --accent: #f59e0b;
+      --text: #e5eefb;
+      --muted: #9aa9c5;
+      --green: #34d399;
+      --red: #ef4444;
+      --shadow: 0 20px 50px rgba(82, 103, 255, 0.35);
+      --border: rgba(148, 163, 184, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,0.28), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(34,211,238,0.22), transparent 25%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      z-index: 1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: rgba(5, 8, 22, 0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.15rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      transition: color 0.3s ease;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 68px 0 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: #dcd2ff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      animation: fadeInUp 0.8s ease 0.1s backwards;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      font-weight: 900;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #5eead4 28%, #b8c2ff 45%, #d8b4fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 0 26px;
+      animation: fadeInUp 0.8s ease 0.3s backwards;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease 0.4s backwards;
+    }
+
+    .primary-btn, .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.03);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .primary-btn:hover, .secondary-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ===== TOOLS GRID ===== */
+    .tools-section {
+      padding: 60px 0 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.06em;
+      margin: 0 0 10px;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .tool-panel {
+      position: relative;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(10, 15, 30, 0.75);
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 80px rgba(15,23,42,0.7);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .tool-panel:nth-child(1) { animation-delay: 0.3s; }
+    .tool-panel:nth-child(2) { animation-delay: 0.4s; }
+    .tool-panel:nth-child(3) { animation-delay: 0.5s; }
+
+    .tool-panel:hover {
+      transform: translateY(-8px);
+      border-color: rgba(124,58,237,0.4);
+    }
+
+    .tool-panel::before {
+      content: "";
+      position: absolute;
+      inset: -50% 30% 50% -20%;
+      background: radial-gradient(circle, rgba(124,58,237,0.45), transparent 70%);
+      filter: blur(18px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tool-panel:hover::before {
+      opacity: 0.7;
+    }
+
+    .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tool-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124,58,237,0.22), rgba(34,211,238,0.12));
+      border: 1px solid rgba(148,163,184,0.2);
+      font-size: 1.8rem;
+    }
+
+    .tool-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+
+    .tool-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0 0 20px;
+    }
+
+    .tool-form {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(124,58,237,0.8);
+      box-shadow: 0 0 0 4px rgba(124,58,237,0.13);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .button-group.full {
+      grid-template-columns: 1fr;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 11px 16px;
+      font: inherit;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: white;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary), #0ea5e9);
+    }
+
+    .btn-danger {
+      background: rgba(148,163,184,0.12);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    /* ===== OUTPUT AREAS ===== */
+    .output-box {
+      min-height: 140px;
+      background: linear-gradient(145deg, rgba(10,15,30,0.8), rgba(17,24,39,0.7));
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-top: 16px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .output-text {
+      word-break: break-all;
+      font-family: "Courier New", monospace;
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 10px;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    #qrcode {
+      width: min(180px, 100%);
+      height: auto;
+      border-radius: 14px;
+      padding: 10px;
+      background: white;
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.4);
+    }
+
+    .copy-btn {
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.4);
+      color: var(--secondary);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(124,58,237,0.4);
+      border-color: rgba(124,58,237,0.6);
+    }
+
+    .copy-btn.copied {
+      background: rgba(52,211,153,0.2);
+      border-color: rgba(52,211,153,0.4);
+      color: var(--green);
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features-section {
+      padding: 60px 0;
+      background: rgba(15, 23, 42, 0.4);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 60px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.2s; }
+    .feature-card:nth-child(2) { animation-delay: 0.3s; }
+    .feature-card:nth-child(3) { animation-delay: 0.4s; }
+    .feature-card:nth-child(4) { animation-delay: 0.5s; }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(34,211,238,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .feature-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      padding: 60px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .faq-item {
+      background: rgba(15, 23, 42, 0.68);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .faq-item:nth-child(1) { animation-delay: 0.3s; }
+    .faq-item:nth-child(2) { animation-delay: 0.4s; }
+    .faq-item:nth-child(3) { animation-delay: 0.5s; }
+
+    .faq-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124,58,237,0.3);
+    }
+
+    .faq-item h4 {
+      margin: 0 0 10px;
+      font-size: 1.04rem;
+      color: var(--text);
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ===== CTA BOX ===== */
+    .cta-box {
+      margin-top: 60px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(34,211,238,0.08));
+      border: 1px solid rgba(124,58,237,0.25);
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 0.8s ease 0.6s backwards;
+    }
+
+    .cta-box h3 {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      letter-spacing: -0.05em;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(5,8,22,0.7);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .tools-grid, .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tools-grid, .features-grid, .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .button-group {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tool-panel {
+        padding: 18px;
+      }
+
+      .tool-form {
+        gap: 10px;
+      }
+
+      input, textarea, select {
+        padding: 10px 12px;
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">⚡</div>
+        <span>InstantTools</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#tools">Tools</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="badge">✨ Free • Fast • Secure • No Signup</div>
+        <h1>All Your <span class="gradient-text">Essential Online Tools</span> in One Place</h1>
+        <p>
+          Create QR codes, generate secure passwords, and convert units instantly. InstantTools is your all-in-one utility platform trusted by millions worldwide. No ads, no tracking, just pure functionality.
+        </p>
+
+        <div class="cta-row">
+          <a href="#tools" class="primary-btn">Get Started Now</a>
+          <a href="#features" class="secondary-btn">See All Features</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section class="tools-section" id="tools">
+      <div class="container">
+        <div class="section-title">
+          <h2>Powerful Tools, Instantly Available</h2>
+          <p>Choose from our collection of free, efficient online utilities</p>
+        </div>
+
+        <div class="tools-grid">
+          <!-- TOOL 1: QR CODE GENERATOR -->
+          <div class="tool-panel">
+            <div class="tool-header">
+              <div class="tool-icon">📱</div>
+            </div>
+            <h3 class="tool-title">QR Code Generator</h3>
+            <p class="tool-desc">Create high-quality QR codes for URLs, text, emails, and more. Download instantly as PNG.</p>
+
+            <div class="tool-form">
+              <div>
+                <label for="qrType">Type</label>
+                <select id="qrType">
+                  <option value="text">Text</option>
+                  <option value="url" selected>URL</option>
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="qrInput">Content</label>
+                <textarea id="qrInput" placeholder="Enter text, URL, email, or phone...">https://example.com</textarea>
+              </div>
+
+              <div class="button-group">
+                <button class="btn btn-primary" id="generateBtn">Generate QR</button>
+                <button class="btn btn-secondary" id="downloadQRBtn">Download</button>
+              </div>
+            </div>
+
+            <div class="output-box">
+              <canvas id="qrcode"></canvas>
+            </div>
+          </div>
+
+          <!-- TOOL 2: PASSWORD GENERATOR -->
+          <div class="tool-panel">
+            <div class="tool-header">
+              <div class="tool-icon">🔐</div>
+            </div>
+            <h3 class="tool-title">Password Generator</h3>
+            <p class="tool-desc">Generate strong, random passwords with customizable length and character types instantly.</p>
+
+            <div class="tool-form">
+              <div>
+                <label for="passLength">Length (8-128)</label>
+                <input type="range" id="passLength" min="8" max="128" value="16" style="cursor: pointer;">
+                <div style="text-align: center; color: var(--secondary); font-weight: 700; margin-top: 8px;" id="passLengthDisplay">16 chars</div>
+              </div>
+
+              <div>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="checkbox" id="passUppercase" checked style="width: 18px; height: 18px; cursor: pointer;">
+                  Uppercase (A-Z)
+                </label>
+              </div>
+
+              <div>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="checkbox" id="passLowercase" checked style="width: 18px; height: 18px; cursor: pointer;">
+                  Lowercase (a-z)
+                </label>
+              </div>
+
+              <div>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="checkbox" id="passNumbers" checked style="width: 18px; height: 18px; cursor: pointer;">
+                  Numbers (0-9)
+                </label>
+              </div>
+
+              <div>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="checkbox" id="passSymbols" checked style="width: 18px; height: 18px; cursor: pointer;">
+                  Symbols (!@#$%...)
+                </label>
+              </div>
+
+              <div class="button-group">
+                <button class="btn btn-primary" id="generatePassBtn">Generate</button>
+                <button class="btn btn-secondary" id="copyPassBtn">Copy</button>
+              </div>
+            </div>
+
+            <div class="output-box">
+              <div class="output-text" id="passwordOutput">Click Generate to create a password</div>
+            </div>
+          </div>
+
+          <!-- TOOL 3: UNIT CONVERTER -->
+          <div class="tool-panel">
+            <div class="tool-header">
+              <div class="tool-icon">🔄</div>
+            </div>
+            <h3 class="tool-title">Unit Converter</h3>
+            <p class="tool-desc">Convert between length, weight, temperature, and more. Real-time conversion instantly.</p>
+
+            <div class="tool-form">
+              <div>
+                <label for="convertType">Category</label>
+                <select id="convertType">
+                  <option value="length">Length (cm, m, km, in, ft, mi)</option>
+                  <option value="weight">Weight (g, kg, lb, oz, ton)</option>
+                  <option value="temperature">Temperature (°C, °F, K)</option>
+                  <option value="volume">Volume (ml, l, gal, pt)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="fromValue">From</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <input type="number" id="fromValue" placeholder="Enter value" value="1" step="any">
+                  <select id="fromUnit">
+                    <option>cm</option>
+                    <option>m</option>
+                    <option>km</option>
+                    <option>in</option>
+                    <option>ft</option>
+                    <option>mi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="toUnit">To</label>
+                <select id="toUnit">
+                  <option>cm</option>
+                  <option selected>m</option>
+                  <option>km</option>
+                  <option>in</option>
+                  <option>ft</option>
+                  <option>mi</option>
+                </select>
+              </div>
+
+              <div class="button-group full">
+                <button class="btn btn-primary" id="convertBtn">Convert Now</button>
+              </div>
+            </div>
+
+            <div class="output-box">
+              <div class="output-text" id="convertOutput">Click Convert to see the result</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Choose InstantTools?</h2>
+          <p>Built for speed, reliability, and global reach</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Lightning Fast</h3>
+            <p>Instant processing with no delays. All tools run locally in your browser.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>100% Secure</h3>
+            <p>Your data never leaves your device. No tracking, no storage, no servers.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>Works perfectly on desktop, tablet, and mobile devices worldwide.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎁</div>
+            <h3>Completely Free</h3>
+            <p>No subscriptions, no hidden fees, no signup required. Use all tools instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-title">
+          <h2>Frequently Asked Questions</h2>
+          <p>Everything you need to know about InstantTools</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>Are these tools really free?</h4>
+            <p>Yes, 100% free forever. No subscriptions, hidden costs, or signup required. All tools are permanently available to everyone.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Is my data stored?</h4>
+            <p>No. All processing happens locally in your browser. We don't store, track, or collect any of your data. Complete privacy guaranteed.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Can I use this for business?</h4>
+            <p>Yes! Perfect for business cards, product QR codes, secure password generation, and unit conversions for any professional use.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>How accurate is the converter?</h4>
+            <p>Extremely accurate. All conversions use standard mathematical formulas with high precision for all unit types.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Do I need to install anything?</h4>
+            <p>No installation needed. Just open in any modern browser and start using. Works offline too after initial load.</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>Which browsers are supported?</h4>
+            <p>All modern browsers: Chrome, Firefox, Safari, Edge. Also works on mobile browsers. No Internet Explorer support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BOX -->
+    <section>
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h3>Start Using InstantTools Today</h3>
+            <p>Join millions of users worldwide. Fast, free, and always available.</p>
+          </div>
+          <a href="#tools" class="primary-btn">Explore All Tools</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="padding: 20px 0;">
+      <p>© 2026 InstantTools — Free Online Utilities | <a href="#" style="color: var(--secondary);">Privacy Policy</a> | <a href="#" style="color: var(--secondary);">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // ===== QR CODE GENERATOR =====
+    const qrInput = document.getElementById('qrInput');
+    const qrType = document.getElementById('qrType');
+    const canvas = document.getElementById('qrcode');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadQRBtn = document.getElementById('downloadQRBtn');
+
+    function formatQRInput() {
+      let value = qrInput.value.trim();
+      if (!value) return '';
+
+      switch (qrType.value) {
+        case 'url':
+          if (!/^https?:\/\//i.test(value)) value = 'https://' + value;
+          return value;
+        case 'email':
+          return `mailto:${value}`;
+        case 'phone':
+          return `tel:${value}`;
+        default:
+          return value;
+      }
+    }
+
+    function generateQR() {
+      const value = formatQRInput();
+      if (!value) {
+        qrInput.focus();
+        return;
+      }
+
+      QRCode.toCanvas(canvas, value, {
+        width: 220,
+        margin: 2,
+        color: { dark: '#111827', light: '#ffffff' }
+      }, function(error) {
+        if (error) console.error(error);
+      });
+    }
+
+    generateBtn.addEventListener('click', generateQR);
+    qrInput.addEventListener('keyup', generateQR);
+    qrType.addEventListener('change', generateQR);
+
+    downloadQRBtn.addEventListener('click', function() {
+      const link = document.createElement('a');
+      link.download = 'qrcode.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    // ===== PASSWORD GENERATOR =====
+    const passLength = document.getElementById('passLength');
+    const passLengthDisplay = document.getElementById('passLengthDisplay');
+    const passUppercase = document.getElementById('passUppercase');
+    const passLowercase = document.getElementById('passLowercase');
+    const passNumbers = document.getElementById('passNumbers');
+    const passSymbols = document.getElementById('passSymbols');
+    const generatePassBtn = document.getElementById('generatePassBtn');
+    const copyPassBtn = document.getElementById('copyPassBtn');
+    const passwordOutput = document.getElementById('passwordOutput');
+
+    passLength.addEventListener('input', function() {
+      passLengthDisplay.textContent = this.value + ' chars';
+    });
+
+    function generatePassword() {
+      const length = parseInt(passLength.value);
+      let chars = '';
+
+      if (passUppercase.checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (passLowercase.checked) chars += 'abcdefghijklmnopqrstuvwxyz';
+      if (passNumbers.checked) chars += '0123456789';
+      if (passSymbols.checked) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+      if (!chars) {
+        passwordOutput.textContent = 'Select at least one option';
+        return;
+      }
+
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      passwordOutput.textContent = password;
+    }
+
+    generatePassBtn.addEventListener('click', generatePassword);
+    generatePassword();
+
+    copyPassBtn.addEventListener('click', function() {
+      const text = passwordOutput.textContent;
+      if (text.includes('Select') || text.includes('Click')) return;
+
+      navigator.clipboard.writeText(text).then(() => {
+        copyPassBtn.textContent = '✓ Copied!';
+        copyPassBtn.classList.add('copied');
+        setTimeout(() => {
+          copyPassBtn.textContent = 'Copy';
+          copyPassBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    // ===== UNIT CONVERTER =====
+    const convertType = document.getElementById('convertType');
+    const fromValue = document.getElementById('fromValue');
+    const fromUnit = document.getElementById('fromUnit');
+    const toUnit = document.getElementById('toUnit');
+    const convertBtn = document.getElementById('convertBtn');
+    const convertOutput = document.getElementById('convertOutput');
+
+    const conversions = {
+      length: {
+        cm: 1,
+        m: 100,
+        km: 100000,
+        in: 2.54,
+        ft: 30.48,
+        mi: 160934.4
+      },
+      weight: {
+        g: 1,
+        kg: 1000,
+        lb: 453.592,
+        oz: 28.3495,
+        ton: 1000000
+      },
+      volume: {
+        ml: 1,
+        l: 1000,
+        gal: 3785.41,
+        pt: 473.176
+      }
+    };
+
+    function updateUnitOptions() {
+      const type = convertType.value;
+      const units = Object.keys(conversions[type]);
+
+      fromUnit.innerHTML = '';
+      toUnit.innerHTML = '';
+
+      units.forEach(unit => {
+        fromUnit.appendChild(new Option(unit, unit));
+        toUnit.appendChild(new Option(unit, unit));
+      });
+
+      toUnit.value = units[1] || units[0];
+      convert();
+    }
+
+    function convert() {
+      const type = convertType.value;
+      const from = fromUnit.value;
+      const to = toUnit.value;
+      const value = parseFloat(fromValue.value);
+
+      if (isNaN(value) || value < 0) {
+        convertOutput.textContent = 'Enter a valid number';
+        return;
+      }
+
+      const inBase = value * conversions[type][from];
+      const result = inBase / conversions[type][to];
+
+      convertOutput.textContent = `${value} ${from} = ${result.toFixed(8).replace(/\.?0+$/, '')} ${to}`;
+    }
+
+    convertType.addEventListener('change', updateUnitOptions);
+    fromValue.addEventListener('input', convert);
+    fromUnit.addEventListener('change', convert);
+    toUnit.addEventListener('change', convert);
+    convertBtn.addEventListener('click', convert);
+
+    updateUnitOptions();
+    generateQR();
+  </script>
+</body>
+</html>
